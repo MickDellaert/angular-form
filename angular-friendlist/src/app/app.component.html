@@ -1,4 +1,4 @@
-{{ formName.value | json }}
+{{ friendModel | json }}
 
 <div class="container-fluid col-md-4">
 
@@ -6,34 +6,60 @@
   <h1>Friend List</h1>
   <br>
 
-<form #formName="ngForm">
-  <div class="mb-3">
-    <label for="firstname" class="form-label">First Name</label>
-    <input ngModel type="text" class="form-control" id="firstname" name="firstname" #firstname="ngModel">
-  </div>
-  <div class="mb-3">
-    <label for="lastname" class="form-label">Last Name</label>
-    <input ngModel type="text" class="form-control" id="lastname" name="lastname" #lastname="ngModel">
-  </div>
-  <div class="mb-3">
-    <label for="email" class="form-label">Email</label>
-    <input ngModel type="email" class="form-control" id="email" name="email" #email="ngModel">
-  </div>
-  <div class="mb-3">
-    <label for="phonenumber" class="form-label">Phone Number</label>
-    <input ngModel type="text" class="form-control" id="phonenumber" name="phonenumber" #phonenumber="ngModel">
-  </div>
-  <div class="mb-3">
-    <label for="language" class="form-label">Favorite Language</label>
-    <select ngModel class="form-select" aria-label="Default select example" id="language" name="language" #language="ngModel">
-      // The options get imported from the languages array defined in app.components.ts
-      and get displayed using the *ngFor loop directive
-      <option *ngFor="let language of languages" [value]="language.name">
-        {{language.name}}
-      </option>
-    </select>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+  <form #formName="ngForm">
+    <div class="mb-3">
+      <label for="firstname" class="form-label">First Name</label>
+      <input [(ngModel)]="friendModel.firstname"
+             type="text"
+             class="form-control"
+             id="firstname"
+             name="firstname"
+             #firstname="ngModel">
+    </div>
+    <div class="mb-3">
+      <label for="lastname" class="form-label">Last Name</label>
+      <input [(ngModel)]="friendModel.lastname"
+             type="text"
+             class="form-control"
+             id="lastname"
+             name="lastname"
+             #lastname="ngModel">
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input [(ngModel)]="friendModel.email"
+             type="email"
+             class="form-control"
+             id="email"
+             name="email"
+             #email="ngModel">
+    </div>
+    <div class="mb-3">
+      <label for="phonenumber" class="form-label">Phone Number</label>
+      <input [(ngModel)]="friendModel.phonenumber"
+             type="text"
+             class="form-control"
+             id="phonenumber"
+             name="phonenumber"
+             #phonenumber="ngModel">
+    </div>
+    <div class="mb-3">
+      <label for="language" class="form-label">Favorite Language</label>
+      <select [(ngModel)]="friendModel.language"
+             class="form-select"
+             aria-label="Default select example"
+             id="language"
+             name="language"
+             #language="ngModel">
+
+        // The options get imported from the languages array defined in app.components.ts
+        and get displayed using the *ngFor loop directive
+        <option *ngFor="let language of languages" [value]="language.name">
+          {{language.name}}
+        </option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
 
 </div>

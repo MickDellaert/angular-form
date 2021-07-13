@@ -1,4 +1,10 @@
-<div class="container-fluid col-md-6">
+{{ formName.value | json }}
+
+<div class="container-fluid col-md-4">
+
+  <br>
+  <h1>Friend List</h1>
+  <br>
 
 <form #formName="ngForm">
   <div class="mb-3">
@@ -18,13 +24,13 @@
     <input ngModel type="text" class="form-control" id="phonenumber" name="phonenumber" #phonenumber="ngModel">
   </div>
   <div class="mb-3">
-    <label for="select" class="form-label">Favorite Language</label>
-    <select ngModel class="form-select" aria-label="Default select example" id="select" name="select" #select="ngModel">
-      <option selected></option>
-      <option value="html">HTML</option>
-      <option value="css">CSS</option>
-      <option value="js">JavaScript</option>
-      <option value="php">PHP</option>
+    <label for="language" class="form-label">Favorite Language</label>
+    <select ngModel class="form-select" aria-label="Default select example" id="language" name="language" #language="ngModel">
+      // The options get imported from the languages array defined in app.components.ts
+      and get displayed using the *ngFor loop directive
+      <option *ngFor="let language of languages" [value]="language.name">
+        {{language.name}}
+      </option>
     </select>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>

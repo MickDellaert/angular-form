@@ -6,51 +6,78 @@
   <h1>Friend List</h1>
   <br>
 
-  <form #formName="ngForm">
+  <form #formName="ngForm" needs-validation>
     <div class="mb-3">
       <label for="firstname" class="form-label">First Name</label>
-      <input [(ngModel)]="friendModel.firstname"
-             type="text"
+      <input type="text"
              class="form-control"
              id="firstname"
              name="firstname"
-             #firstname="ngModel">
+             pattern="^[a-zA-Z]+(?:-[a-zA-Z]+)*$"
+             [(ngModel)]="friendModel.firstname"
+             #firstname="ngModel"
+             [class.is-valid]="firstname.valid"
+             [class.is-invalid]="firstname.invalid && firstname.touched"
+             required>
+      <div class="valid-feedback">Valid First Name.</div>
+      <div class="invalid-feedback">Please provide a valid first name.</div>
     </div>
     <div class="mb-3">
       <label for="lastname" class="form-label">Last Name</label>
-      <input [(ngModel)]="friendModel.lastname"
-             type="text"
+      <input type="text"
              class="form-control"
              id="lastname"
              name="lastname"
-             #lastname="ngModel">
+             pattern="^[a-zA-Z]+(?:-[a-zA-Z]+)*$"
+             [(ngModel)]="friendModel.lastname"
+             #lastname="ngModel"
+             [class.is-valid]="lastname.valid"
+             [class.is-invalid]="lastname.invalid && lastname.touched"
+             required>
+      <div class="valid-feedback">Valid Last Name.</div>
+      <div class="invalid-feedback">Please provide a valid last name.</div>
     </div>
     <div class="mb-3">
       <label for="email" class="form-label">Email</label>
-      <input [(ngModel)]="friendModel.email"
-             type="email"
+      <input type="email"
              class="form-control"
              id="email"
              name="email"
-             #email="ngModel">
+             pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"
+             [(ngModel)]="friendModel.email"
+             #email="ngModel"
+             [class.is-valid]="email.valid"
+             [class.is-invalid]="email.invalid && email.touched"
+             required>
+      <div class="valid-feedback">Valid email.</div>
+      <div class="invalid-feedback">Please provide a valid email.</div>
     </div>
     <div class="mb-3">
       <label for="phonenumber" class="form-label">Phone Number</label>
-      <input [(ngModel)]="friendModel.phonenumber"
-             type="text"
+      <input type="text"
              class="form-control"
              id="phonenumber"
              name="phonenumber"
-             #phonenumber="ngModel">
+             pattern="^\ *(((\+|0\ *0)\ *([0-9]\ *[0-9]))|[0-9])(\ *[0-9]){9}\ *$"
+             [(ngModel)]="friendModel.phonenumber"
+             #phonenumber="ngModel"
+             [class.is-valid]="phonenumber.valid"
+             [class.is-invalid]="phonenumber.invalid && phonenumber.touched"
+             required>
+      <div class="valid-feedback">Valid phone number.</div>
+      <div class="invalid-feedback">Please provide a valid phone number.</div>
     </div>
     <div class="mb-3">
       <label for="language" class="form-label">Favorite Language</label>
-      <select [(ngModel)]="friendModel.language"
-             class="form-select"
-             aria-label="Default select example"
-             id="language"
-             name="language"
-             #language="ngModel">
+      <select class="form-select"
+              aria-label="Default select example"
+              id="language"
+              name="language"
+              [(ngModel)]="friendModel.language"
+              #language="ngModel"
+              [class.is-valid]="language.valid"
+              [class.is-invalid]="language.invalid && language.touched"
+              required>
 
         // The options get imported from the languages array defined in app.components.ts
         and get displayed using the *ngFor loop directive
@@ -58,6 +85,8 @@
           {{language.name}}
         </option>
       </select>
+      <div class="valid-feedback">Thanks for your choice.</div>
+      <div class="invalid-feedback">Please make a choice.</div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>

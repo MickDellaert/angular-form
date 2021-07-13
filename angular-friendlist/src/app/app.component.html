@@ -6,7 +6,7 @@
   <h1>Friend List</h1>
   <br>
 
-  <form #formName="ngForm" needs-validation>
+  <form #formName="ngForm" needs-validation novalidate>
     <div class="mb-3">
       <label for="firstname" class="form-label">First Name</label>
       <input type="text"
@@ -85,10 +85,10 @@
           {{language.name}}
         </option>
       </select>
-      <div class="valid-feedback">Thanks for your choice.</div>
+      <div class="valid-feedback">Thank you for your choice.</div>
       <div class="invalid-feedback">Please make a choice.</div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button class="btn btn-primary" [disabled]="formName.form.invalid" >Submit</button>
   </form>
 
 </div>

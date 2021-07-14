@@ -6,7 +6,7 @@
   <h1>Friend List</h1>
   <br>
 
-  <form #formName="ngForm" needs-validation novalidate>
+  <form #formName="ngForm" (ngSubmit)="submitDetails()" needs-validation novalidate>
     <div class="mb-3">
       <label for="firstname" class="form-label">First Name</label>
       <input type="text"
@@ -19,7 +19,7 @@
              [class.is-valid]="firstname.valid"
              [class.is-invalid]="firstname.invalid && firstname.touched"
              required>
-      <div class="valid-feedback">Valid First Name.</div>
+      <div class="valid-feedback">Valid first name.</div>
       <div class="invalid-feedback">Please provide a valid first name.</div>
     </div>
     <div class="mb-3">
@@ -34,7 +34,7 @@
              [class.is-valid]="lastname.valid"
              [class.is-invalid]="lastname.invalid && lastname.touched"
              required>
-      <div class="valid-feedback">Valid Last Name.</div>
+      <div class="valid-feedback">Valid last name.</div>
       <div class="invalid-feedback">Please provide a valid last name.</div>
     </div>
     <div class="mb-3">

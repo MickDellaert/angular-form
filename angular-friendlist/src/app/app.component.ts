@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { Friend } from "./friend";
-import { AddFriendService } from "./add-friend.service";
-import { OnInit } from "@angular/core";
+import {Component} from '@angular/core';
+import {Friend} from "./friend";
+import {AddFriendService} from "./add-friend.service";
+import {OnInit} from "@angular/core";
 
 @Component({
   selector: 'app-root',
@@ -17,7 +17,7 @@ export class AppComponent {
   languages = [{name: "HTML"}, {name: "CSS"}, {name: "JavaScript"}, {name: "PHP"}]
 
   // instantiate a new friendModel object using the Friend class defined in friend.ts
-  friendModel = new Friend( "", "", "", "", "");
+  friendModel = new Friend("", "", "", "", "");
 
 
   constructor(private addFriendService: AddFriendService) {
@@ -43,32 +43,30 @@ export class AppComponent {
   // I got it working with the help of Izidor's and Elisabeta's code, need to look into:
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function TODO
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then TODO
+  // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch -> the function below can be derived from here TODO
   async getFriends(url:string): Promise<any> {
-    let response = await fetch(url, {
+    await fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
       }
-    });
-
-    let data = await response.json();
-    this.allFriends = data;
-
-    return this.allFriends;
+    }).then(response => {
+      return response.json()
+    }).then(data => (this.allFriends = data));
   }
-
 }
 
 // another way to write the above function:
-
-// async getFriends(url:string): Promise<any> {
-//   await fetch(url, {
+// async getFriends(url: string): Promise<any> {
+//   let response = await fetch(url, {
 //     method: 'GET',
 //     headers: {
 //       'Content-Type': 'application/json'
 //     }
-//   }).then(response => {
-//     return response.json()
-//   }).then(data => (this.allFriends = data));
-// }
+//   });
+//
+//   let data = await response.json();
+//   this.allFriends = data;
+//
+//   return this.allFriends;
 // }

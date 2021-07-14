@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Friend } from "./friend";
 import { AddFriendService } from "./add-friend.service";
+import { OnInit } from "@angular/core";
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,10 @@ export class AppComponent {
   constructor(private addFriendService: AddFriendService) {
   }
 
+  ngOnInit(): any {
+    this.getFriends('http://localhost:9050/allFriends').then();
+  }
+
   // need to look into subscribe TODO
   submitDetails() {
     console.log(this.friendModel);
@@ -35,7 +40,7 @@ export class AppComponent {
   }
 
   // after a lot googling I still don't quite get everything that's going on in this function,
-  // I got it working with the help of Izidor's code, need to look into:
+  // I got it working with the help of Izidor's and Elisabeta's code, need to look into:
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function TODO
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then TODO
   async getFriends(url:string): Promise<any> {
@@ -51,6 +56,7 @@ export class AppComponent {
 
     return this.allFriends;
   }
+
 }
 
 // another way to write the above function:
